@@ -1,6 +1,7 @@
 package com.mycloud.dataflow;
 
 import com.mycloud.configuration.AppProperties;
+import com.exasol.jdbc.EXADriver;
 
 public class CheckFileAccess {
 

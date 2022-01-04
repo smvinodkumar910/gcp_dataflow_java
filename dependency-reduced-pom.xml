@@ -69,6 +69,13 @@
       <name>Sonatype OSS Repository Hosting</name>
       <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </repository>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>maven.exasol.com</id>
+      <url>https://maven.exasol.com/artifactory/exasol-releases</url>
+    </repository>
   </repositories>
   <properties>
     <slf4j.version>1.7.25</slf4j.version>

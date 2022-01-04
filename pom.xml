@@ -39,6 +39,13 @@
             <enabled>true</enabled>
          </snapshots>
       </repository>
+      <repository>
+        <id>maven.exasol.com</id>
+        <url>https://maven.exasol.com/artifactory/exasol-releases</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
    </repositories>
    <build>
       <plugins>
@@ -119,6 +126,18 @@
       <artifactId>beam-sdks-java-io-google-cloud-platform</artifactId>
       <version>${beam.version}</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.beam/beam-sdks-java-io-jdbc -->
+   <dependency>
+      <groupId>org.apache.beam</groupId>
+      <artifactId>beam-sdks-java-io-jdbc</artifactId>
+      <version>${beam.version}</version>
+   </dependency>
+   <!-- https://mvnrepository.com/artifact/com.exasol/exasol-jdbc -->
+   <dependency>
+      <groupId>com.exasol</groupId>
+      <artifactId>exasol-jdbc</artifactId>
+      <version>7.1.0</version>
+   </dependency>
       <!-- Apache HTTP Client -->
       <dependency>
          <groupId>org.apache.httpcomponents</groupId>
