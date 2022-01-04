@@ -1,0 +1,5 @@
+{
+    "name": "Api To BigQuery",
+    "description": "Pipeline to load data from RESTApi to BigQuery",
+    "parameters": [ ]
+  }
