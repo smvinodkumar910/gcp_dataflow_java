@@ -6,6 +6,6 @@
           "projectid":"mynewdevenv",
           "datasetid":"DATAFLOW_LOAD",
           "tableid":"API_DATA",
-          "gcpTempLocation":"gs://mynewdevenv-bucket/temp/"
+          "tempLocationPath":"gs://mynewdevenv-bucket/temp/"
       }
 }
