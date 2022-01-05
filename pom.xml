@@ -23,7 +23,7 @@
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
       <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
-      <slf4j.version>1.7.25</slf4j.version>
+      <slf4j.version>2.0.0-alpha5</slf4j.version>
       <beam.version>2.31.0</beam.version>
       <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
    </properties>
@@ -41,7 +41,7 @@
       </repository>
       <repository>
         <id>maven.exasol.com</id>
-        <url>https://maven.exasol.com/artifactory/exasol-releases</url>
+        <url>https://maven.exasol.com/artifactory/exasol-releases/</url>
         <snapshots>
             <enabled>false</enabled>
         </snapshots>
@@ -58,12 +58,11 @@
                <target>11</target>
             </configuration>
          </plugin>
-         <plugin>
+        <plugin>
   <groupId>org.apache.maven.plugins</groupId>
   <artifactId>maven-shade-plugin</artifactId>
   <version>${maven-shade-plugin.version}</version>
   <executions>
-    <!-- Run shade goal on package phase -->
     <execution>
       <phase>package</phase>
       <goals>
@@ -81,9 +80,7 @@
         </filter>
     </filters>
         <transformers>
-          <!-- Required to ensure Beam Pipeline options can be passed properly. Without this, pipeline options will not be recognised -->
           <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"></transformer>
-          <!-- add Main-Class to manifest file -->
           <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
             <mainClass>com.mycloud.dataflow.ApiToBq</mainClass>
           </transformer>
@@ -92,7 +89,43 @@
       </configuration>
     </execution>
   </executions>
+</plugin> 
+<!---<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-dependency-plugin</artifactId>
+    <executions>
+        <execution>
+            <id>copy-dependencies</id>
+            <phase>prepare-package</phase>
+            <goals>
+                <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                <overWriteReleases>false</overWriteReleases>
+                <overWriteSnapshots>false</overWriteSnapshots>
+                <overWriteIfNewer>true</overWriteIfNewer>
+            </configuration>
+        </execution>
+    </executions>
 </plugin>
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>2.3.1</version>
+    <configuration>
+      <archive>
+        <manifest>
+          <addClasspath>true</addClasspath>
+          <addExtensions>false</addExtensions>
+           <mainClass>com.mycloud.dataflow.ApiToBq</mainClass> 
+        </manifest>
+         <manifestEntries>
+                <Class-Path>./lib/</Class-Path>
+         </manifestEntries>
+      </archive>
+    </configuration>
+  </plugin>  -->
       </plugins>
       <pluginManagement>
          <plugins>
@@ -103,7 +136,7 @@
                <configuration>
                   <cleanupDaemonThreads>false</cleanupDaemonThreads>
                </configuration>
-            </plugin>
+            </plugin> 
          </plugins>
       </pluginManagement>
    </build>
@@ -119,26 +152,21 @@
       <version>${beam.version}</version>
       <scope>runtime</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
-    <!-- Google Cloud I/O - BigQuery, Bigtable, Datastore, Pub/Sub, Spanner -->
     <dependency>
       <groupId>org.apache.beam</groupId>
       <artifactId>beam-sdks-java-io-google-cloud-platform</artifactId>
       <version>${beam.version}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.beam/beam-sdks-java-io-jdbc -->
    <dependency>
       <groupId>org.apache.beam</groupId>
       <artifactId>beam-sdks-java-io-jdbc</artifactId>
       <version>${beam.version}</version>
    </dependency>
-   <!-- https://mvnrepository.com/artifact/com.exasol/exasol-jdbc -->
    <dependency>
       <groupId>com.exasol</groupId>
       <artifactId>exasol-jdbc</artifactId>
       <version>7.1.0</version>
    </dependency>
-      <!-- Apache HTTP Client -->
       <dependency>
          <groupId>org.apache.httpcomponents</groupId>
          <artifactId>httpcore</artifactId>
@@ -154,12 +182,17 @@
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
+     <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-nop</artifactId>
+         <version>2.0.0-alpha5</version>
+      </dependency>
       <dependency>
          <groupId>org.json</groupId>
          <artifactId>json</artifactId>
          <version>20141113</version>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
       <dependency>
          <groupId>commons-io</groupId>
          <artifactId>commons-io</artifactId>

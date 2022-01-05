@@ -74,11 +74,11 @@
         <enabled>false</enabled>
       </snapshots>
       <id>maven.exasol.com</id>
-      <url>https://maven.exasol.com/artifactory/exasol-releases</url>
+      <url>https://maven.exasol.com/artifactory/exasol-releases/</url>
     </repository>
   </repositories>
   <properties>
-    <slf4j.version>1.7.25</slf4j.version>
+    <slf4j.version>2.0.0-alpha5</slf4j.version>
     <beam.version>2.31.0</beam.version>
     <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

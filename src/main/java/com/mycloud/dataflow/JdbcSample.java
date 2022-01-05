@@ -5,6 +5,7 @@ import com.exasol.jdbc.*;
 
 public class JdbcSample
 {
+    
     public static void main(String[] args)
     {
         try { Class.forName("com.exasol.jdbc.EXADriver");
