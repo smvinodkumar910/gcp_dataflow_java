@@ -44,7 +44,7 @@ java -jar mydataflow-1.0.0.jar \
   --runner=DataflowRunner \
   --project=mynewdevenv \
   --region=us-central1 \
-  --tempLocation=gs://mynewdevenv-bucket/temp/
+  --gcpTempLocation=gs://mynewdevenv-bucket/temp/
 
 
 Creating Templates :
