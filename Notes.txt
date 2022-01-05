@@ -12,8 +12,8 @@ mvn archetype:generate \
 --To run Dataflow job from project
 mvn compile -e exec:java \
  -Dexec.mainClass=com.mycloud.dataflow.CheckFileAccess \
- -Dexec.args="--project=mycloud-proj \
-    --gcpTempLocation=gs://mycloud-proj-bucket/temp/ \
+ -Dexec.args="--project=mynewdevenv \
+    --gcpTempLocation=gs://mynewdevenv-bucket/temp/ \
     --runner=DataflowRunner \
     --region=us-east1"
 
@@ -23,28 +23,28 @@ mvn compile -e exec:java \
 mvn -Pdataflow-runner compile \
     exec:java \
     -Dexec.mainClass= \
-    -Dexec.args="--project=mycloud-proj \
-    --gcpTempLocation=gs://mycloud-proj-bucket/temp/ \
-    --output=gs://mycloud-proj-bucket/results/output \
+    -Dexec.args="--project=mynewdevenv \
+    --gcpTempLocation=gs://mynewdevenv-bucket/temp/ \
+    --output=gs://mynewdevenv-bucket/results/output \
     --runner=DataflowRunner \
     --region=us-central1" \
     -Pdataflow-runner
 	
-java -jar target/mydataflow-1.0.0.jar --runner DataflowRunner --project mycloud-proj --region us-central1 --tempLocation gs://mycloud-proj-bucket/temp/
+java -jar target/mydataflow-1.0.0.jar --runner DataflowRunner --project mynewdevenv --region us-central1 --tempLocation gs://mynewdevenv-bucket/temp/
 
-java -cp target/mydataflow-1.0.0.jar com.mycloud.ApiToBq "--runner DataflowRunner --project mycloud-proj --region us-central1 --tempLocation gs://mycloud-proj-bucket/temp/"
+java -cp target/mydataflow-1.0.0.jar com.mycloud.ApiToBq "--runner DataflowRunner --project mynewdevenv --region us-central1 --tempLocation gs://mynewdevenv-bucket/temp/"
 
 java -jar target/mydataflow-1.0.0.jar \
---runner=DataflowRunner --project=mycloud-proj \
+--runner=DataflowRunner --project=mynewdevenv \
 --region=us-central1 \
---tempLocation=gs://mycloud-proj-bucket/temp/ \
+--tempLocation=gs://mynewdevenv-bucket/temp/ \
 --jobName=job1
 
 java -jar mydataflow-1.0.0.jar \
   --runner=DataflowRunner \
-  --project=mycloud-proj \
+  --project=mynewdevenv \
   --region=us-central1 \
-  --tempLocation=gs://mycloud-proj-bucket/temp/
+  --tempLocation=gs://mynewdevenv-bucket/temp/
 
 
 Creating Templates :
@@ -54,9 +54,9 @@ Creating Templates :
   
   Create metadata file
   
-  export TEMPLATE_PATH="gs://mycloud-proj-bucket/dataflow/templates/api_to_bq.json"
+  export TEMPLATE_PATH="gs://mynewdevenv-bucket/dataflow/templates/api_to_bq.json"
 
-  export TEMPLATE_IMAGE="gcr.io/mycloud-proj/dataflow/api_to_bq:latest"
+  export TEMPLATE_IMAGE="gcr.io/mynewdevenv/dataflow/api_to_bq:latest"
 
 
 gcloud auth configure-docker
