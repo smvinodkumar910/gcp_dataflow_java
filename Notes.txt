@@ -43,7 +43,7 @@ java -jar target/mydataflow-1.0.0.jar \
 java -jar mydataflow-1.0.0.jar \
   --runner=DataflowRunner \
   --project=mynewdevenv \
-  --region=us-east1 \
+  --region=us-central1 \
   --tempLocation=gs://mynewdevenv-bucket/temp/
 
 
