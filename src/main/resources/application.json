@@ -3,9 +3,9 @@
           "URL":"https://gorest.co.in/public/v1/users"
       },
       "gcp":{
-          "projectid":"mycloud-proj",
-          "datasetid":"TEST_DATA",
-          "tableid":"Load_API_Data",
-          "tempLocationPath":"gs://mycloud-proj-bucket/temp/"
+          "projectid":"mynewdevenv",
+          "datasetid":"DATAFLOW_LOAD",
+          "tableid":"API_DATA",
+          "tempLocationPath":"gs://mynewdevenv/temp/"
       }
 }
