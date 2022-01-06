@@ -17,28 +17,8 @@ mvn compile -e exec:java \
     --runner=DataflowRunner \
     --region=us-east1"
 
-  mvn compile -e exec:java \
+mvn compile -e exec:java \
  -Dexec.mainClass=com.mycloud.dataflow.CheckFileAccess
-	
-mvn -Pdataflow-runner compile \
-    exec:java \
-    -Dexec.mainClass= \
-    -Dexec.args="--project=mynewdevenv \
-    --gcpTempLocation=gs://mynewdevenv-bucket/temp/ \
-    --output=gs://mynewdevenv-bucket/results/output \
-    --runner=DataflowRunner \
-    --region=us-central1" \
-    -Pdataflow-runner
-	
-java -jar target/mydataflow-1.0.0.jar --runner DataflowRunner --project mynewdevenv --region us-central1 --tempLocation gs://mynewdevenv-bucket/temp/
-
-java -cp target/mydataflow-1.0.0.jar com.mycloud.ApiToBq "--runner DataflowRunner --project mynewdevenv --region us-central1 --tempLocation gs://mynewdevenv-bucket/temp/"
-
-java -jar target/mydataflow-1.0.0.jar \
---runner=DataflowRunner --project=mynewdevenv \
---region=us-central1 \
---tempLocation=gs://mynewdevenv-bucket/temp/ \
---jobName=job1
 
 java -jar mydataflow-1.0.0.jar \
   --runner=DataflowRunner \
@@ -47,8 +27,9 @@ java -jar mydataflow-1.0.0.jar \
   --tempLocation=gs://mynewdevenv-bucket/temp/ \
   --sourceTableName=gcp2
 
-    mvn compile exec:java \
-     -Dexec.mainClass=com.example.myclass \
+--To create Classic template
+mvn compile exec:java \
+     -Dexec.mainClass=com.mycloud.dataflow.ApiToBq \
      -Dexec.args="--runner=DataflowRunner \
                   --project=mynewdevenv \
                   --stagingLocation=gs://mynewdevenv-bucket/staging \
@@ -58,7 +39,7 @@ java -jar mydataflow-1.0.0.jar \
     
 
 
-Creating Templates :
+Creating Flex Templates :
 
 	  
   mvn clean package

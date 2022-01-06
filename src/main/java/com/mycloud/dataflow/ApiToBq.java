@@ -152,7 +152,7 @@ public class ApiToBq {
                     : BigQueryIO.Write.WriteDisposition.WRITE_TRUNCATE));
     try {
       logger.info("Starting pipeline");
-      p.run().waitUntilFinish();
+      p.run();
     } catch (UnsupportedOperationException e) {
       e.printStackTrace();
     }
