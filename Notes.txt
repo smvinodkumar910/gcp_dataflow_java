@@ -33,7 +33,7 @@ mvn compile exec:java \
      -Dexec.args="--runner=DataflowRunner \
                   --project=mynewdevenv \
                   --stagingLocation=gs://mynewdevenv-bucket/staging \
-                  --templateLocation=gs://mynewdevenv-bucket/templates/ApiToBqTemplate
+                  --templateLocation=gs://mynewdevenv-bucket/templates/ApiToBqTemplate \
                   --region=us-central1 \
                   --sourceTableName=gcp2"
     
