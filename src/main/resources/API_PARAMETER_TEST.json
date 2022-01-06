@@ -1,17 +1,24 @@
 {
-      "sourceApi":{
-          "URL":"https://gorest.co.in/public/v1/users"
+    "fields": [
+      {
+        "name": "id",
+        "type": "INTEGER"
       },
-      "gcp":{
-          "projectid":"mynewdevenv",
-          "datasetid":"DATAFLOW_LOAD",
-          "tableid":"API_DATA",
-          "tempLocationPath":"gs://mynewdevenv-bucket/temp/"
+      {
+        "name": "name",
+        "type": "STRING"
       },
-      "gcp2":{
-        "projectid":"mynewdevenv",
-        "datasetid":"DATAFLOW_LOAD",
-        "tableid":"API_PARAMETER_TEST",
-        "tempLocationPath":"gs://mynewdevenv-bucket/temp/"
-    }
-}
+      {
+        "name": "email",
+        "type": "STRING"
+      },
+      {
+        "name": "gender",
+        "type": "STRING"
+      },
+      {
+        "name": "status",
+        "type": "STRING"
+      }
+    ]
+  }

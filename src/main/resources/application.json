@@ -1,0 +1,17 @@
+{
+      "sourceApi":{
+          "URL":"https://gorest.co.in/public/v1/users"
+      },
+      "gcp":{
+          "projectid":"mynewdevenv",
+          "datasetid":"DATAFLOW_LOAD",
+          "tableid":"API_DATA",
+          "tempLocationPath":"gs://mynewdevenv-bucket/temp/"
+      },
+      "gcp2":{
+        "projectid":"mynewdevenv",
+        "datasetid":"DATAFLOW_LOAD",
+        "tableid":"API_PARAMETER_TEST",
+        "tempLocationPath":"gs://mynewdevenv-bucket/temp/"
+    }
+}
