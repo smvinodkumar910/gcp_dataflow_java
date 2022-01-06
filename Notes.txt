@@ -1,4 +1,5 @@
 Creating Maven project:
+-----------------------
 
 --To create project
 mvn archetype:generate \
@@ -27,7 +28,9 @@ java -jar mydataflow-1.0.0.jar \
   --tempLocation=gs://mynewdevenv-bucket/temp/ \
   --sourceTableName=gcp2
 
---To create Classic template
+To create Classic template
+-----------------------------
+
 mvn compile exec:java \
      -Dexec.mainClass=com.mycloud.dataflow.ApiToBq \
      -Dexec.args="--runner=DataflowRunner \
@@ -36,40 +39,28 @@ mvn compile exec:java \
                   --templateLocation=gs://mynewdevenv-bucket/templates/ApiToBqTemplate \
                   --region=us-central1 \
                   --sourceTableName=gcp2"
-    
+
+Note : metadata file name should be {templateName}_{metadata} and it has to be uploaded To
+the same folder of the template.
 
 
 Creating Flex Templates :
-
+-------------------------
 	  
-  mvn clean package
-  
-  Create metadata file
-  
-  export TEMPLATE_PATH="gs://mynewdevenv-bucket/dataflow/templates/api_to_bq.json"
-
-  export TEMPLATE_IMAGE="gcr.io/mynewdevenv/dataflow/api_to_bq:latest"
-
-
-gcloud auth configure-docker
-# Build Docker Image
-docker image build -t $TEMPLATE_IMAGE .
-# Push image to Google Cloud Registry
-docker push $TEMPLATE_IMAGE
-
-      gcloud dataflow flex-template build $TEMPLATE_PATH \
-      --image-gcr-path "$TEMPLATE_IMAGE" \
-      --sdk-language "JAVA" \
-      --flex-template-base-image JAVA11 \
-      --metadata-file "metadata.json" \
-      --jar "target/mydataflow-1.0.0.jar" \
-      --env FLEX_TEMPLATE_JAVA_MAIN_CLASS="com.mycloud.ApiToBq"
-
-
-      gcloud dataflow flex-template build $TEMPLATE_PATH \
-      --image-gcr-path "$TEMPLATE_IMAGE" \
-      --sdk-language "JAVA" \
-      --flex-template-base-image JAVA11 \
-      --metadata-file "metadata.json" \
-      --jar "target/mydataflow-1.0.0.jar" \
-      --env FLEX_TEMPLATE_JAVA_MAIN_CLASS="com.mycloud.ApiToBq"
+1. mvn clean package
+2. Create metadata file
+3. export TEMPLATE_PATH="gs://mynewdevenv-bucket/dataflow/templates/api_to_bq.json"
+4. export TEMPLATE_IMAGE="gcr.io/mynewdevenv/dataflow/api_to_bq:latest"
+5. configure docker : gcloud auth configure-docker
+6. Build Docker Image :
+   docker image build -t $TEMPLATE_IMAGE .
+7. Push image to Google Cloud Registry :
+   docker push $TEMPLATE_IMAGE
+8. Create template :
+    gcloud dataflow flex-template build $TEMPLATE_PATH \
+          --image-gcr-path "$TEMPLATE_IMAGE" \
+          --sdk-language "JAVA" \
+          --flex-template-base-image JAVA11 \
+          --metadata-file "metadata.json" \
+          --jar "target/mydataflow-1.0.0.jar" \
+          --env FLEX_TEMPLATE_JAVA_MAIN_CLASS="com.mycloud.ApiToBq"
