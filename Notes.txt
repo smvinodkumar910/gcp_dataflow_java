@@ -45,8 +45,17 @@ java -jar mydataflow-1.0.0.jar \
   --project=mynewdevenv \
   --region=us-central1 \
   --tempLocation=gs://mynewdevenv-bucket/temp/ \
-  --sourceTableName=gcp
-  
+  --sourceTableName=gcp2
+
+    mvn compile exec:java \
+     -Dexec.mainClass=com.example.myclass \
+     -Dexec.args="--runner=DataflowRunner \
+                  --project=mynewdevenv \
+                  --stagingLocation=gs://mynewdevenv-bucket/staging \
+                  --templateLocation=gs://mynewdevenv-bucket/templates/ApiToBqTemplate
+                  --region=us-central1 \
+                  --sourceTableName=gcp2"
+    
 
 
 Creating Templates :
