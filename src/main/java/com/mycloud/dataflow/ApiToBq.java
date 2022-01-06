@@ -20,6 +20,7 @@ import com.mycloud.configuration.SchemaLoad;
 
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.io.gcp.bigquery.BigQueryIO;
+import org.apache.beam.sdk.options.Description;
 import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.transforms.Create;
@@ -40,6 +41,14 @@ import org.slf4j.LoggerFactory;
 public class ApiToBq {
 
   private static Logger logger = LoggerFactory.getLogger(ApiToBq.class);
+
+
+  public interface ApiToBqOptions extends PipelineOptions {
+    @Description("Source table name")
+    String getSourceTableName();
+
+    void setSourceTableName(String value);
+  }
 
   public List<String> getApiData(String url) {
     // Create object to be retured
@@ -84,6 +93,8 @@ public class ApiToBq {
   }
 
   public static void main(String[] args) {
+
+    ApiToBqOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().as(ApiToBqOptions.class) ;
     
     // Read application properties
     AppProperties appProperties = new AppProperties();
@@ -91,7 +102,7 @@ public class ApiToBq {
     // Get Source API Details
     Map<String, String> apidtl = appProperties.getProperty("sourceApi");
     // Get BQ Table details
-    Map<String, String> gcpdtl = appProperties.getProperty("gcp");
+    Map<String, String> gcpdtl = appProperties.getProperty(options.getSourceTableName());
 
     //Get Data schema properties
     SchemaLoad schemaLoad = new SchemaLoad(gcpdtl.get("tableid"));
@@ -106,7 +117,8 @@ public class ApiToBq {
     tableRef.setDatasetId(gcpdtl.get("datasetid"));
     tableRef.setTableId(gcpdtl.get("tableid"));
 
-    PipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().create();
+    
+    
     // This is required for BigQuery
     options.setTempLocation(gcpdtl.get("tempLocationPath"));
     String timeStamp = new SimpleDateFormat("yyyy-MM-dd-HHmmss").format(new Date());
