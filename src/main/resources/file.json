@@ -1,0 +1,24 @@
+{
+    "fields": [
+      {
+        "name": "id",
+        "type": "INTEGER"
+      },
+      {
+        "name": "name",
+        "type": "STRING"
+      },
+      {
+        "name": "email",
+        "type": "STRING"
+      },
+      {
+        "name": "gender",
+        "type": "STRING"
+      },
+      {
+        "name": "status",
+        "type": "STRING"
+      }
+    ]
+  }
