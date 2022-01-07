@@ -86,9 +86,7 @@ public class CsvToBq {
     Pipeline p = Pipeline.create(options);
     logger.info("Creating pipeline");
     p.apply("Read CSV Data", TextIO.read().from(tabledtl.get("sourcefilepath")) )
-        .apply("JSON To Beam Rows",
-            JsonToRow.withSchema(schemaLoad.getBeamSchema()))
-        .apply("Beam Rows into BQ Rows", ParDo.of(new DoFn<Row, TableRow>() {
+        .apply("CSV into BQ Rows", ParDo.of(new DoFn<String, TableRow>() {
 
           private static final long serialVersionUID = 1L;
 
@@ -96,10 +94,10 @@ public class CsvToBq {
           public void processElement(ProcessContext c) {
             String[] columnNames = schemaLoad.getHeaderAsStringArray();
             TableRow row = new TableRow();
-            Row beamrow = c.element();
+            String[] colval = c.element().split(",");
             for (int j = 0; j < columnNames.length; j++) {
               // No typy conversion at the moment.
-              row.set(columnNames[j], beamrow.getValue(columnNames[j]));
+              row.set(columnNames[j], colval[j]);
             }
 
             c.output(row);
