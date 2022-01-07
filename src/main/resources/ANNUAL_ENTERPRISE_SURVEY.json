@@ -1,0 +1,32 @@
+{
+    "fields": [
+      {
+        "name": "year",
+        "type": "INTEGER"
+      },
+      {
+        "name": "industry_code_ANZSIC",
+        "type": "STRING"
+      },
+      {
+        "name": "industry_name_ANZSIC",
+        "type": "STRING"
+      },
+      {
+        "name": "rme_size_grp",
+        "type": "STRING"
+      },
+      {
+        "name": "variable",
+        "type": "STRING"
+      },
+      {
+        "name": "value",
+        "type": "STRING"
+      },
+      {
+        "name": "unit",
+        "type": "STRING"
+      }
+    ]
+  }

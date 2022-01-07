@@ -13,5 +13,12 @@
         "datasetid":"DATAFLOW_LOAD",
         "tableid":"API_PARAMETER_TEST",
         "tempLocationPath":"gs://mynewdevenv-bucket/temp/"
+    },
+    "annualsurvey":{
+        "projectid":"mynewdevenv",
+        "datasetid":"DATAFLOW_LOAD",
+        "tableid":"ANNUAL_ENTERPRISE_SURVEY",
+        "tempLocationPath":"gs://mynewdevenv-bucket/temp/",
+        "sourcefilepath":"gs://mynewdevenv-bucket/SourceFiles/annual-enterprise-survey-2020.csv"
     }
 }
