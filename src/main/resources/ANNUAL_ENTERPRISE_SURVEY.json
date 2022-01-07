@@ -2,7 +2,7 @@
     "fields": [
       {
         "name": "year",
-        "type": "INTEGER"
+        "type": "STRING"
       },
       {
         "name": "industry_code_ANZSIC",
