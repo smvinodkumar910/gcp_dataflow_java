@@ -28,6 +28,13 @@ java -jar mydataflow-1.0.0.jar \
   --tempLocation=gs://mynewdevenv-bucket/temp/ \
   --sourceTableName=gcp2
 
+java -cp mydataflow-1.0.0.jar com.mycloud.dataflow.CsvToBq \
+  --runner=DataflowRunner \
+  --project=mynewdevenv \
+  --region=us-central1 \
+  --tempLocation=gs://mynewdevenv-bucket/temp/ \
+  --sourceTableName=annualsurvey
+
 To create Classic template
 -----------------------------
 

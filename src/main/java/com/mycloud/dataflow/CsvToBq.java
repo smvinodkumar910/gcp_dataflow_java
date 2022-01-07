@@ -1,16 +1,7 @@
 
 package com.mycloud.dataflow;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
 
 
 import com.google.api.services.bigquery.model.TableReference;
@@ -24,16 +15,12 @@ import org.apache.beam.sdk.io.gcp.bigquery.BigQueryIO;
 import org.apache.beam.sdk.options.Description;
 import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
-import org.apache.beam.sdk.transforms.Create;
 import org.apache.beam.sdk.transforms.DoFn;
-import org.apache.beam.sdk.transforms.JsonToRow;
 import org.apache.beam.sdk.transforms.ParDo;
-import org.apache.beam.sdk.values.Row;
 
-import org.json.*;
-import java.util.ArrayList;
+
+
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -94,7 +81,7 @@ public class CsvToBq {
           public void processElement(ProcessContext c) {
             String[] columnNames = schemaLoad.getHeaderAsStringArray();
             TableRow row = new TableRow();
-            String[] colval = c.element().split(",");
+            String[] colval = c.element().split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
             for (int j = 0; j < columnNames.length; j++) {
               // No typy conversion at the moment.
               row.set(columnNames[j], colval[j]);
