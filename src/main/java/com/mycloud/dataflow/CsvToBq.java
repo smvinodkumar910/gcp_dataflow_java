@@ -36,6 +36,7 @@ public class CsvToBq {
     String getSourceTableName();
 
     void setSourceTableName(String value);
+
   }
 
   
